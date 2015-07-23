@@ -1,0 +1,323 @@
+{
+	"template": "logstash-*",
+	"settings": {
+		"index.refresh_interval": "5s"
+	},
+	"mappings": {
+		"_default_": {
+			"_all": {
+				"enabled": true,
+				"omit_norms": true
+			},
+			"dynamic_templates": [ 
+				{
+					"message_field": {
+						"match": "message",
+						"match_mapping_type": "string",
+						"mapping": {
+							"type": "string",
+							"index": "analyzed",
+							"omit_norms": true
+						}
+					}
+				},
+				{
+					"string_fields": {
+						"match": "*",
+						"match_mapping_type": "string",
+						"mapping": {
+							"type": "string",
+							"index": "analyzed",
+							"omit_norms": true,
+							"fields": {
+								"raw": {
+									"type": "string",
+									"index": "not_analyzed",
+									"ignore_above": 256
+								}
+							}
+						}
+					}
+				} 
+			],
+			"properties": {
+				"@version": {
+					"type": "string",
+					"index": "not_analyzed"
+				},
+				"action": {
+					"type": "string"
+				},
+				"agent": {
+					"type": "object",
+					"dynamic": true,
+					"properties": {
+						"device": {
+							"type": "string"
+						},
+						"major": {
+							"type": "string"
+						},
+						"minor": {
+							"type": "string"
+						},
+						"name": {
+							"type": "string"
+						},
+						"os": {
+							"type": "string"
+						},
+						"os_major": {
+							"type": "string"
+						},
+						"os_minor": {
+							"type": "string"
+						},
+						"os_name": {
+							"type": "string"
+						},
+						"patch": {
+							"type": "string"
+						}
+					}
+				},
+				"auth": {
+					"type": "string"
+				},
+				"bytes": {
+					"type": "integer"
+				},
+				"client": {
+					"type": "object",
+					"dynamic": true,
+					"properties": {
+						"area_code": {
+							"type": "string"
+						},
+						"city_name": {
+							"type": "string"
+						},
+						"continent_code": {
+							"type": "string"
+						},
+						"country_code2": {
+							"type": "string"
+						},
+						"country_code3": {
+							"type": "string"
+						},
+						"country_name": {
+							"type": "string"
+						},
+						"dma_code": {
+							"type": "integer"
+						},
+						"ip": {
+							"type": "string"
+						},
+						"latitude": {
+							"type": "double"
+						},
+						"location": {
+							"type": "geo_point"
+						},
+						"longitude": {
+							"type": "double"
+						},
+						"postal_code": {
+							"type": "string"
+						},
+						"real_region_name": {
+							"type": "string"
+						},
+						"region_name": {
+							"type": "string"
+						},
+						"timezone": {
+							"type": "string"
+						}
+					}
+				},
+				"clientip": {
+					"type": "string",
+					"index": "no"
+				},
+				"code_func": {
+					"type": "string"
+				},
+				"config_file": {
+					"type": "string"
+				},
+				"config_line": {
+					"type": "string"
+				},
+				"coredump_cgroup": {
+					"type": "string"
+				},
+				"coredump_cmdline": {
+					"type": "string"
+				},
+				"coredump_comm": {
+					"type": "string"
+				},
+				"coredump_cwd": {
+					"type": "string"
+				},
+				"coredump_environ": {
+					"type": "string"
+				},
+				"coredump_exe": {
+					"type": "string"
+				},
+				"coredump_filename": {
+					"type": "string"
+				},
+				"coredump_gid": {
+					"type": "integer"
+				},
+				"coredump_open_fds": {
+					"type": "string"
+				},
+				"coredump_owner_uid": {
+					"type": "integer"
+				},
+				"coredump_pid": {
+					"type": "integer"
+				},
+				"coredump_proc_cgroup": {
+					"type": "string"
+				},
+				"coredump_proc_limits": {
+					"type": "string"
+				},
+				"coredump_proc_maps": {
+					"type": "string"
+				},
+				"coredump_proc_status": {
+					"type": "string"
+				},
+				"coredump_root": {
+					"type": "string"
+				},
+				"coredump_session": {
+					"type": "string"
+				},
+				"coredump_signal": {
+					"type": "string"
+				},
+				"coredump_slice": {
+					"type": "string"
+				},
+				"coredump_timestamp": {
+					"type": "date"
+				},
+				"coredump_uid": {
+					"type": "integer"
+				},
+				"coredump_unit": {
+					"type": "string"
+				},
+				"errno": {
+					"type": "integer"
+				},
+				"exe": {
+					"type": "string"
+				},
+				"exit_code": {
+					"type": "string"
+				},
+				"exit_status": {
+					"type": "string"
+				},
+				"gid": {
+					"type": "integer"
+				},
+				"host": {
+					"type": "string"
+				},
+				"httpversion": {
+					"type": "double"
+				},
+				"ident": {
+					"type": "string"
+				},
+				"leader": {
+					"type": "string"
+				},
+				"level": {
+					"type": "string"
+				},
+				"message": {
+					"type": "string"
+				},
+				"module": {
+					"type": "string"
+				},
+				"newver": {
+					"type": "string"
+				},
+				"package": {
+					"type": "string"
+				},
+				"path": {
+					"type": "string"
+				},
+				"pid": {
+					"type": "integer"
+				},
+				"priority": {
+					"type": "string"
+				},
+				"proxyrequest": {
+					"type": "string"
+				},
+				"referrer": {
+					"type": "string"
+				},
+				"request": {
+					"type": "string"
+				},
+				"response": {
+					"type": "integer"
+				},
+				"result": {
+					"type": "string"
+				},
+				"seat_id": {
+					"type": "string"
+				},
+				"session_id": {
+					"type": "string"
+				},
+				"slice": {
+					"type": "string"
+				},
+				"type": {
+					"type": "string"
+				},
+				"uid": {
+					"type": "integer"
+				},
+				"unit": {
+					"type": "string"
+				},
+				"user_id": {
+					"type": "string"
+				},
+				"user_unit": {
+					"type": "string"
+				},
+				"verb": {
+					"type": "string"
+				},
+				"version": {
+					"type": "string"
+				},
+				"vhost": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
+

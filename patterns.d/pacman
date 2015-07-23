@@ -1,0 +1,2 @@
+PACMANLOG \[(?<timestamp>[^\]]*)\] \[(?<module>[^\]]*)\] (?<msg>.*)
+PACMANACTION (?<action>(reinstalled|installed|added|removed|upgraded)) (?<package>[^ ]*) \((?<version>[^) ]*)(\)| -> )((?<newver>[^)])*)
