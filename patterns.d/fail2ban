@@ -1,0 +1,2 @@
+FAIL2BANLOG (?<timestamp>\d+-\d+-\d+ \d+:\d+:\d+,\d+) (?<module>[^\s\[]+)\s+\[(?<pid>\d+)\]: %{LOGLEVEL:level}\s+(?<msg>.*)$
+
